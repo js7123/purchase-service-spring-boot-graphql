@@ -1,0 +1,22 @@
+mutation CreateCustomer {
+    createCustomer(
+        customerName: "Tim O'Hara"
+        street: "333 W 34th St"
+        city: "New York City"
+        state: "NY"
+        zip: "10001-2417"
+        phone1: "+12127192299"
+        phone2: "+12127192273"
+        phone3: "+12127193000"
+    ) {
+        id
+        customerName
+        street
+        city
+        state
+        zip
+        phone1
+        phone2
+        phone3
+    }
+}

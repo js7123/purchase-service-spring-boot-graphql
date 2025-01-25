@@ -1,0 +1,23 @@
+type StockItem {
+    id: ID!
+    lineItem: LineItem!
+    price: Float!
+    taxRate: Float!
+}
+
+input StockItemInput {
+    lineItem: LineItemInput!
+    price: Long!
+    taxRate: Float!
+}
+
+extend type Query {
+    findAllStockItems: [StockItem]!
+    countStockItems: Long!
+}
+
+extend type Mutation {
+    createStockItem(lineItem: Long!, price: Float!, taxRate: Float!): StockItem!
+    updateStockItem(id: ID!, lineItem: Long!, price: Float!, taxRate: Float!): StockItem!
+    deleteStockItem(id:ID!): Boolean!
+}

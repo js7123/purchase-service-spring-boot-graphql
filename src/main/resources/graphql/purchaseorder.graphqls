@@ -1,0 +1,37 @@
+type PurchaseOrder {
+    id: ID!
+    poNo: Long!
+    customer: Customer!
+    orderDate: DateTime
+    shipDate: DateTime
+    toStreet: String
+    toCity: NonEmptyString
+    toState: NonEmptyString
+    toZip: NonEmptyString
+}
+
+input PurchaseOrderInput {
+    poNo: Long!
+    customer: CustomerInput!
+    orderDate: DateTime
+    shipDate: DateTime
+    toStreet: NonEmptyString
+    toCity: NonEmptyString
+    toState: NonEmptyString
+    toZip: NonEmptyString
+}
+
+extend type Query {
+    findAllPurchaseOrders: [PurchaseOrder]!
+    countPurchaseOrders: Long!
+}
+
+extend type Mutation {
+    createPurchaseOrder(poNo: Long!, customer: ID!, orderDate: DateTime!, shipDate: DateTime!,
+        toStreet: NonEmptyString!, toCity: NonEmptyString!, toState: NonEmptyString!,  toZip: NonEmptyString!):
+    PurchaseOrder!
+    updatePurchaseOrder(id: ID!, poNo: Long!, customer: ID!, orderDate: DateTime!, shipDate:
+    DateTime!, toStreet: NonEmptyString!, toCity: NonEmptyString!, toState: NonEmptyString!,  toZip:
+    NonEmptyString!): PurchaseOrder!
+    deletePurchaseOrder(id: ID!): Boolean!
+}

@@ -1,0 +1,27 @@
+type LineItem {
+    id: ID!
+    lineItemNo: Long!
+    purchaseOrder: PurchaseOrder!
+    stockItem: StockItem!
+    quantity: Long
+    discount: Float
+}
+
+input LineItemInput {
+    lineItemNo: Long!
+    purchaseOrder: PurchaseOrderInput!
+    stockItem: StockItemInput!
+    quantity: Long
+    discount: Float
+}
+
+extend type Query {
+    findAllLineItems: [LineItem]!
+    countLineItems: Long!
+}
+
+extend type Mutation {
+    createLineItem(lineItemNo: Long!, purchaseOrder: Long!, stockItem: Long!, quantity: Long!, discount: Float!): LineItem!
+    updateLineItem(id: ID!, lineItemNo: Long!, purchaseOrder: Long!, stockItem: Long!, quantity: Long!, discount: Float!): LineItem!
+    deleteLineItem(id: ID!): Boolean!
+}

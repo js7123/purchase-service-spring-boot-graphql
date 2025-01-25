@@ -1,0 +1,5 @@
+mutation DeleteCustomer {
+    deleteCustomer(
+        id: "502"
+    )
+}

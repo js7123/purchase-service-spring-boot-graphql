@@ -1,0 +1,51 @@
+scalar Long
+
+scalar NonEmptyString
+
+scalar DateTime
+@specifiedBy(url:
+"https://scalars.graphql.org/andimarek/date-time.html"
+)
+
+directive @NotBlank(message : String! = "The field %s is required") on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+directive @Pattern(regexp : String! =".*", message : String = "graphql.validation.Pattern.message") on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+type Customer {
+    id: ID!
+    customerName: NonEmptyString!
+    street: NonEmptyString
+    city: NonEmptyString
+    state: NonEmptyString
+    zip: NonEmptyString
+    phone1: NonEmptyString
+    phone2: NonEmptyString
+    phone3: NonEmptyString
+}
+
+input CustomerInput {
+    customerName: NonEmptyString!
+    street: NonEmptyString
+    city: NonEmptyString
+    state: NonEmptyString
+    zip: NonEmptyString
+    phone1: NonEmptyString
+    phone2: NonEmptyString
+    phone3: NonEmptyString
+}
+
+type Query {
+    findAllCustomers: [Customer]!
+    getCustomerByPurchaseOrderId(purchaseOrderId: Long!): Customer!
+    countCustomers: Long!
+}
+
+type Mutation {
+    createCustomer(customerName: NonEmptyString!, street: NonEmptyString!, city: NonEmptyString!,
+        state: NonEmptyString!, zip: NonEmptyString!, phone1: NonEmptyString!, phone2: NonEmptyString!,
+        phone3: NonEmptyString!): Customer!
+    updateCustomer(id: ID!, customerName: NonEmptyString!, street: NonEmptyString!, city: NonEmptyString!,
+        state: NonEmptyString!, zip: NonEmptyString!, phone1: NonEmptyString!, phone2: NonEmptyString!,
+        phone3: NonEmptyString!): Customer!
+    deleteCustomer(id: ID!): Boolean!
+}

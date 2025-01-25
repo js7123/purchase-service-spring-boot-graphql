@@ -1,0 +1,13 @@
+query FindAllCustomers {
+    findAllCustomers {
+        id
+        customerName
+        street
+        city
+        state
+        zip
+        phone1
+        phone2
+        phone3
+    }
+}
